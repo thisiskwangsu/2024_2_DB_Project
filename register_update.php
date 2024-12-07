@@ -4,25 +4,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 
-    $mode = $_POST['mode'];
-
-    if($mode != 'insert' && $mode != 'modify') {
-        echo("<script>alert('mode값이 제대로 넘어오지 않음');</script>");
-        echo("<script>locatio.replace('./register.php');</script>");
-        exit;
-    }
-
-    switch ($mode) {
-        case 'insert';
-            $mb_id = trim($_POST['mb_id']);
-            $title = "회원가입";
-            break;
-        case 'modify';
-            $mb_id = trim($_SESSION['ss_mb_id']);
-            $title = "회원수정";
-            break;
-    }
-
+    $mb_id = trim($_POST['mb_id']);
     $mb_password = trim($_POST['mb_password']); //앞뒤 공백제거
     $mb_password_re = trim($_POST['mb_password_re']);
     $mb_name = trim($_POST['mb_name']);
@@ -30,7 +12,9 @@
     $mb_gender = trim($_POST['mb_gender']);
     $mb_ip = $_SERVER['REMOTE_ADDR'];
     $mb_datetime = date('Y-m-d H:i:s');
-    $mb_modify_datetime = date('Y-m-d H:i:s');
+    $zipcode = trim($_POST['postal_code']); //우편번호
+    $addr1 = trim($_POST['addr']); //우편주소1
+    $addr2 = trim($_POST['detail_addr']); //상세주소
 
     echo($mb_ip);
 
@@ -63,41 +47,29 @@
         echo("<script>location.replace('./register.php');</script>");
         exit;
     }
-    /*
-    $sql = " SELECT PASSWORD $mb_password AS pass ";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $mb_password = $row['pass']; */
+   
     $hashed_password = password_hash($mb_password, PASSWORD_DEFAULT); //암호화
+    $sql = " SELECT * FROM member WHERE mb_id = '$mb_id' ";
+    $result = mysqli_query($conn, $sql);
 
-    if($mode == "insert") { //회원가입의 경우
-        $sql = " SELECT * FROM member WHERE mb_id = '$mb_id' ";
-        $result = mysqli_query($conn, $sql);
-
-        if(mysqli_num_rows($result) > 0) {
-            echo("<script>alert('이미 사용중인 회원아이디입니다.');</script>");
-            echo("<script>location.replace('./register.php');</script>");
-            exit;
-        }
-        $sql = " INSERT INTO member 
-                        SET mb_id = '$mb_id',
-                            mb_password = '$hashed_password',
-                            mb_name = '$mb_name',
-                            mb_email = '$mb_email',
-                            mb_gender = '$mb_gender',
-                            mb_ip = '$mb_ip',
-                            mb_datetime = '$mb_datetime' ";
-                            
-        $result = mysqli_query($conn, $sql);
-
-    } else if($mode = "modify") {
-        $sql = "UPDATE member
-                SET mb_password = '$hashed_password',
-                    mb_email = '$mb_email',
-                    mb_modify_datetime = '$mb_modify_datetime' 
-                WHERE mb_id = '$mb_id' ";
-        mysqli_query($conn, $sql);
+    if(mysqli_num_rows($result) > 0) {
+        echo("<script>alert('이미 사용중인 회원아이디입니다.');</script>");
+        echo("<script>location.replace('./register.php');</script>");
+        exit;
     }
+    $sql = " INSERT INTO member 
+                    SET mb_id = '$mb_id',
+                        mb_password = '$hashed_password',
+                        mb_name = '$mb_name',
+                        mb_email = '$mb_email',
+                        mb_gender = '$mb_gender',
+                        mb_ip = '$mb_ip',
+                        mb_datetime = '$mb_datetime',
+                        zipcode = '$zipcode',
+                        addr1 = '$addr1',
+                        addr2 = '$addr2' ";
+                        
+    $result = mysqli_query($conn, $sql);
     echo("<meta http-equiv = 'Refresh' content='0; url=./login.php'>");
     mysqli_close($conn);
 ?>

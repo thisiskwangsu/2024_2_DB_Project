@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <th>비밀번호</th>
-                <td><input type="text" name="mb_password"></td>
+                <td><input type="password" name="mb_password"></td>
             </tr>
             <tr>
                 <td colspan="2" class="td_center">

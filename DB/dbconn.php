@@ -1,7 +1,7 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
+    $servername = "";
+    $username = "";
     $password = "";
     $dbname = "";
 
@@ -13,5 +13,5 @@
     die("Connection failed: " . mysqli_connect_error());
     }
 
-    session_start(); //¼¼¼Ç ½ÃÀÛ
+    session_start(); //ì„¸ì…˜ ì‹œìž‘
 ?>

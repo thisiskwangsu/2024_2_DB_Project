@@ -1,22 +1,22 @@
 <?php
     include("DB/dbconn.php");
 
-    /* if(isset($_SESSION['ss_mb_id']) && $_GET['mode'] == 'modify') {
-        $mb_id = $_SESSION['ss_mb_id'];
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
 
-        $sql = " SELECT * FROM member WHERE mb_id = '$mb_id' ";
-        $result = mysqli_query($conn, $sql);
-        $mb = mysqli_fetch_assoc($result);
-        mysqli_close($conn);
+    $id = $_SESSION['ss_mb_id']; //로그인 성공했을떄 세션값
+    $sql = " SELECT * FROM member WHERE mb_id = $id ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
 
-        $mode = "modify";
-        $title = "회원수정";
-        $modify_mb_info = "randonly";
-    } else {
-        $mode = "insert";
-        $title = "회원가입";
-        $modify_mb_info = "";
-    } */
+    $mb_id = $row['mb_id'];
+    $mb_password = $row['mb_password']; //암호화된 문자
+    $mb_name = $row['mb_name'];
+    $mb_email = $row['mb_email'];
+    $mb_id = $row['mb_id'];
+    $zipcode = $row['zipcode'];
+    $addr1 = $row['addr1'];
+    $addr2 = $row['addr2'];
 ?>
 
 <!DOCTYPE html>
@@ -25,58 +25,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
     <link href="style/style.css" rel="stylesheet" type="text/css">
+    <title></title>
 </head>
 
 <body>
-    <?php
-        if(isset($_SESSION['ss_mb_id'])) { //ss_mb_id 확인하여 로그인된 사용자라면 로그인 되었다는 알람과 index로 이동
-            echo("<script>alert('이미 로그인 했습니다.');</script>");
-            echo("<script>location.replace('./index.php');</script>");
-        } else { ?>
-    <form action="./register_update.php" onsubmit="return fregisterform_submit(this);" method="POST">
-        <input type="hidden" name="mode" value="<?php echo $mode ?>">
-
+    <h1>회원수정</h1>
+    <form action="./update_proc.php" onsubmit="return fregisterform_submit(this);" method="POST">
         <table>
             <tr>
                 <th>아이디</th>
-                <td><input type="text" name="mb_id" value="<?php echo $mb['mb_id'] ?>" <?php echo $modify_mb_info ?>>
-                </td>
-            </tr>
-            <tr>
-                <th>비밀번호</th>
-                <td><input type="password" name="mb_password"></td>
-            </tr>
-            <tr>
-                <th>비밀번호 확인</th>
-                <td><input type="password" name="mb_password_re"></td>
+                <td><input type="text" value=<?php echo($mb_id); ?> readonly></td>
             </tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="mb_name" value="<?php echo $mb['mb_name'] ?>"
-                        <?php echo $modify_mb_info ?>></td>
+                <td><input type="text" value=<?php echo($mb_name); ?> name="mb_name"></td>
+            </tr>
+            <!--
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" placeholder="현재 비밀번호" name="mb_password"></td>
+                입력되는 비밀번호 확인할 필요있다.
+            </tr>
+-->
+            <tr>
+                <th>새 비밀번호</th><br>
+                <td><input type="password" name="new_mb_password"></td>
+            </tr>
+            <tr>
+                <th>새 비밀번호 확인</th>
+                <td><input type="password" name="new_mb_password_re"></td>
             </tr>
             <tr>
                 <th>이메일</th>
-                <td><input type="text" name="mb_email" value="<?php echo $mb['mb_email']?>"></td>
-            </tr>
-            <tr>
-                <th>성별</th>
-                <td>
-                    <label><input type="radio" name="mb_gender" value="남자"
-                            <?php echo($mb['mb_gender'] == "남자") ? "checked" : ""; ?>>남자</label>
-                    <label><input type="radio" name="mb_gender" value="여자"
-                            <?php echo($mb['mb_gender'] == "남자") ? "checked" : ""; ?>>여자</label>
-                </td>
+                <td><input type="text" value=<?php echo($mb_email); ?> name="mb_email"></td>
             </tr>
             <tr>
                 <th>주소</th>
                 <td>
-                    <input type="text" size=5 id="sample2_postcode" placeholder="우편번호" readonly name="postal_code">
+                    <input type="text" size=5 id="sample2_postcode" readonly name="postal_code"
+                        value="<?php   echo($zipcode);  ?>">
                     <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" size=45 id="sample2_address" placeholder="주소" readonly name="addr"><br>
-                    <input type="text" size=20 id="sample2_detailAddress" placeholder="상세주소" name="detail_addr">
+                    <input type="text" size=45 id="sample2_address" readonly name="addr"
+                        value="<?php   echo($addr1);  ?>"><br>
+                    <input type="text" size=20 id="sample2_detailAddress" name="detail_addr"
+                        value="<?php    echo($addr2);  ?>">
                     <input type="text" id="sample2_extraAddress" placeholder="참고항목" readonly>
 
                     <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
@@ -181,44 +174,32 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" class="td_center"><input type="submit" value="회원가입"><a href="./login.php">취소</a></td>
+                <td colspan="2" class="td_center">
+                    <input type="submit" value="제출">
+                    <a onclick="history.back()">돌아가기</a>
+                </td>
             </tr>
         </table>
     </form>
-    <?php } ?>
-
     <script>
     function fregisterform_submit(f) { //submit 최종 폼체크
-        if (f.mb_id.value.length < 1) {
-            alert("아이디를 입력하십시오.");
-            f.mb_id.focus();
-            return false;
-        }
 
-        if (f.mb_name.value.leng th < 1) {
+        if (f.mb_name.value.length < 1) {
             alert("이름을 입력하시오");
             f.mb_name.focus();
             return false;
         }
 
-        if (f.mb_password.value.length < 3) {
-            alert("비밀번호를 3글자 이상 입력하십시오: ");
-            f.mb_password.focus();
+        if (f.new_mb_password.value.length < 3) {
+            alert("새 비밀번호를 3글자 이상 입력하십시오: ");
+            f.new_mb_password.focus();
             return false;
         }
 
-        if (f.mb_password.value != f.mb_password_re.value) {
+        if (f.new_mb_password.value != f.new_mb_password_re.value) {
             alert("비밀번호가 같지않습니다");
-            f.mb_password_re.focus();
+            f.new_mb_password_re.focus();
             return false;
-        }
-
-        if (f.mb_password.value.length > 0) {
-            if (f.mb_password_re.value.length < 3) {
-                alert("비밀번호 3글자 이상 입력하십시오");
-                f.mb_password_re.focus();
-                return false;
-            }
         }
 
         if (f.mb_email.value.length < 1) {
