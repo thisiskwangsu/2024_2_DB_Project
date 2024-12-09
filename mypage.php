@@ -5,7 +5,7 @@
     ini_set('display_errors', '1');
 
     $id = $_SESSION['ss_mb_id']; //로그인 성공했을떄 세션값
-    $sql = " SELECT * FROM member WHERE mb_id = $id ";
+    $sql = " SELECT * FROM member WHERE mb_id = '$id' ";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 

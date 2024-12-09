@@ -1,8 +1,8 @@
 <?php   
     include("DB/dbconn.php");
 
-    $logged_in = isset($_SESSION['ss_mb_id']);
-    $user_name = $logged_in ? $_SESSION['ss_mb_id'] : null;
+    $logged_in = isset($_SESSION['ss_mb_id']); //참
+    /* $user_name = $logged_in ? $_SESSION['ss_mb_id'] : null; */
 
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,6 +34,12 @@
                 </li>
                 <?php   }   else {?>
                 <!--로그인  경우-->
+                <?php    if($_SESSION['ss_mb_id'] == "admin") {  ?>
+                <!--관리자 admin으로 로그인할 경우 관리자메뉴가 있어야한다.-->
+                <li>
+                    <a class="nav-link" href="./Product/p-adminlist.php">관리자메뉴</a>
+                </li>
+                <?php   }   ?>
                 <li class="nav-item">
                     <a class="nav-link" href="./mypage.php">마이페이지<?php echo("(".$_SESSION['ss_mb_id'].")");  ?></a>
                 </li>

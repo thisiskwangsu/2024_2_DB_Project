@@ -14,7 +14,7 @@
         exit;
     }
 
-    $sql = " SELECT * FROM member WHERE mb_id = $mb_id "; //아이디 존재여부 검사
+    $sql = " SELECT * FROM member WHERE mb_id = '$mb_id' "; //아이디 존재여부 검사
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result); //레코드
 
