@@ -10,6 +10,7 @@ $name = $_POST['pname'];  // 상품 이름
 $content = $_POST['pcontent']; // 상품 설명
 $price1 = $_POST['price1']; // 정상 가격
 $price2 = $_POST['price2']; // 할인가격
+echo($class);
 
 // 업로드된 파일 정보
 $userfile = $_FILES['userfile']['name'];       // 업로드된 파일 이름

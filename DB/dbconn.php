@@ -13,5 +13,5 @@
     die("Connection failed: " . mysqli_connect_error());
     }
 
-    session_start(); //?„¸?…˜ ?‹œ?ž‘
+    session_start();
 ?>

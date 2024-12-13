@@ -35,19 +35,52 @@
 
         switch($class) {
             case 1:
-                echo ("<option value=1 selected>1</option>
-			    <option value=2>2</option>
-                <option value=3>3</option>");
+                echo ("<option value=1 selected>mancity</option>
+			    <option value=2>manutd</option>
+                <option value=3>chelsea</option>
+                <option value=4>liverpool</option>
+                <option value=5>tottenham</option>
+                <option value=6>arsnal</option>");
 		        break;
             case 2:
-                echo ("<option value=1>1</option>
-                <option value=2 selected>2</option>
-                <option value=3>3</option>");
+                echo ("<option value=1>mancity</option>
+			    <option value=2 selected>manutd</option>
+                <option value=3>chelsea</option>
+                <option value=4>liverpool</option>
+                <option value=5>tottenham</option>
+                <option value=6>arsnal</option>");
                 break;
             case 3:
-                echo ("<option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3 selected>3</option>");
+                echo ("<option value=1>mancity</option>
+			    <option value=2>manutd</option>
+                <option value=3 selected>chelsea</option>
+                <option value=4>liverpool</option>
+                <option value=5>tottenham</option>
+                <option value=6>arsnal</option>");
+                break;
+            case 4:
+                echo ("<option value=1>mancity</option>
+			    <option value=2>manutd</option>
+                <option value=3>chelsea</option>
+                <option value=4 selected>liverpool</option>
+                <option value=5>tottenham</option>
+                <option value=6>arsnal</option>");
+                break;
+            case 5:
+                echo ("<option value=1 selected>mancity</option>
+			    <option value=2>manutd</option>
+                <option value=3>chelsea</option>
+                <option value=4>liverpool</option>
+                <option value=5 selected></option>
+                <option value=6>arsnal</option>");
+                break;
+            case 6:
+                echo ("<option value=1>mancity</option>
+			    <option value=2>manutd</option>
+                <option value=3>chelsea</option>
+                <option value=4>liverpool</option>
+                <option value=5>tottenham</option>
+                <option value=6 selected>arsnal</option>");
                 break;
         }
 

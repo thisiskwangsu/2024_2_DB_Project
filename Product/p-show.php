@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 
 <body>
@@ -13,8 +13,6 @@
 
     $code = $_GET['code']; //p-admin에서 보냄
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
 
     $sql = "SELECT * FROM product WHERE code = '$code'";
     $result = mysqli_query($conn, $sql);
@@ -26,7 +24,10 @@
     $price1 = $row['price1'];
     $price2 = $row['price2'];
     $userfile = $row['userfile'];
-    echo($userfile);
+    // 상품의 조회수를 읽어와서 1 증가시킨 다음 업데이트 쿼리를 적용
+    $hit = $row['hit'];
+    $hit++;
+    mysqli_query($conn, "UPDATE product SET hit = $hit WHERE code = '$code'");
 
     echo ("
 	<table width=650 border=0 align=center>
@@ -82,7 +83,7 @@
     </table>
     ");
     mysqli_close($conn);
-    //회월들이 물건 선택시 선택하는 기능 , 후기 기능 추가, 댓글 기능 추가
+    //회원들이 물건 선택시 선택하는 기능 , 후기 기능 추가, 댓글 기능 추가 할 것
     ?>
 </body>
 

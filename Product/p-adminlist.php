@@ -45,15 +45,20 @@
                     <td align='right' width='70'><font size='2'>$price2 원</font></td>
                     <td width='70' align='center'>
                         <font size='2'>
-                            <a href='p-modify.php?code=$code'>수정</a> /
+                            <a href='p-modify.php?code=$code'>수정</a>
                             <a href='p-delete.php?code=$code'>삭제</a>
                         </font>
                     </td>
                   </tr>");
         }
     }
-
+    
+    
     echo ("</table>");
+    echo(" <td><a href='p-input.php'>상품추가하러가기</a></td>");
+
+    //회원목록기능추가할것
+
     mysqli_close($conn); // 데이터베이스 연결 종료
     ?>
 </body>

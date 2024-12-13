@@ -16,9 +16,12 @@
                 <th>상품분류</th>
                 <td>
                     <select name=class>
-                        <option value=1>1</option>
-                        <option value=2>2</option>
-                        <option value=3>3</option>
+                        <option value="1">mancity</option>
+                        <option value="2">manutd</option>
+                        <option value="3">chelsea</option>
+                        <option value="4">liverpool</option>
+                        <option value="5">tottenham</option>
+                        <option value="6">arsnal </option>
                         <!-- value는 물품 카테고리? -->
                     </select>
                 </td>
@@ -54,6 +57,7 @@
             </tr>
         </form>
     </table>
+    <a href="./p-adminlist.php">상품 보러 가기</a>
 
 </body>
 
