@@ -13,7 +13,6 @@
 
     $code = $_GET['code']; //p-admin에서 보냄
 
-
     $sql = "SELECT * FROM product WHERE code = '$code'";
     $result = mysqli_query($conn, $sql);
 
@@ -57,7 +56,7 @@
                     </tr>
                     <tr>
                         <td colspan=2 height=100 valign=bottom align=center>
-                            <form method=post action=tobag.php?code=$code>
+                            <form method=POST action=../tobag.php?code=$code>
                                 <input type=text size=3 name=quantity value=1>&nbsp;
                                 <input type=submit value=담기>
                             </form>

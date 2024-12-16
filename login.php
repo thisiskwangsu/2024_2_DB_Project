@@ -32,6 +32,15 @@
                     <a href="./register.php">회원가입</a>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <a href="./findid.html">아이디찾기</a>
+                </td>
+                <td>
+                    <a href="./changepw.php">비밀번호찾기</a>
+                </td>
+            </tr>
+
         </table>
     </form>
     <?php   }   ?>
