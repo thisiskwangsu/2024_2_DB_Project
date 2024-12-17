@@ -37,7 +37,7 @@
         case 3: //첼시
             # code...
             $teamName = "첼시";
-            $uni_home = "Product/photo/chelsea_home.png";
+            $uni_home = "Product/photo/chelsea_home.jpg";
             $uni_away = "Product/photo/chelsea_away.jpg";
             $query = $row['code'];
             $query_ = $row_['code'];

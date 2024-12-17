@@ -1,22 +1,6 @@
 <?php
     include("DB/dbconn.php");
 
-    /* if(isset($_SESSION['ss_mb_id']) && $_GET['mode'] == 'modify') {
-        $mb_id = $_SESSION['ss_mb_id'];
-
-        $sql = " SELECT * FROM member WHERE mb_id = '$mb_id' ";
-        $result = mysqli_query($conn, $sql);
-        $mb = mysqli_fetch_assoc($result);
-        mysqli_close($conn);
-
-        $mode = "modify";
-        $title = "회원수정";
-        $modify_mb_info = "randonly";
-    } else {
-        $mode = "insert";
-        $title = "회원가입";
-        $modify_mb_info = "";
-    } */
 ?>
 
 <!DOCTYPE html>
