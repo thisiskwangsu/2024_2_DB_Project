@@ -49,6 +49,7 @@ $Session = $_SESSION['ss_mb_id']; // 세션값 아이디
                         $pname = $product['name'];
                         $price = $product['price2'];
                         $subTotalPrice = $quantity * $price;
+                        $subTotalPrice += $subTotalPrice;
 
                         echo '
                         <div class="col-md-4 mb-4">

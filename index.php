@@ -11,6 +11,7 @@
 <body>
     <?php include 'Frame/header.php'; ?>
     <?php include 'Frame/main.php'; ?>
+    <?php include 'Frame/bottom.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

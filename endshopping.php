@@ -1,4 +1,5 @@
 <?php
+//구매확정 기능
     include("DB/dbconn.php");
 
     error_reporting(E_ALL);
@@ -43,10 +44,9 @@
         ");
         exit;
     }
+    $buydate = date("YmdH:i:s");	// 구매 날짜 저장
 
-    $buydate = date("Y-m-d H:i:s");	// 구매 날짜 저장
-
-    $ordernum = strtoupper(substr($Session, 0, 3)) . "-" . substr($buydate, 0, 10);
+    $ordernum = strtoupper(substr($Session, 0, 3)).substr($buydate, 0, 10).mt_rand(1,1000);
 
     $address = "(" . $zipcode .  ")" . "&nbsp;" . $addr1 . "&nbsp;" . $addr2;
 

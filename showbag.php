@@ -1,5 +1,6 @@
 <?php
     include("DB/dbconn.php");
+    include 'Frame/header.php';
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
     
@@ -25,6 +26,7 @@
 </head>
 
 <body>
+    <h1>쇼핑백 </h1>
     <table width=690 border=0>
         <tr>
             <td align=center>

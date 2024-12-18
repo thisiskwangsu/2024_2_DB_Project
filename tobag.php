@@ -1,4 +1,5 @@
 <?php
+//쇼핑백에 담는 프로세스, 쇼핑백에 물품의 코드도 담긴다 -> 마이페이지에서 물건확인
     include("DB/dbconn.php");
 
     error_reporting(E_ALL);

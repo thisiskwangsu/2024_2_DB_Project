@@ -56,6 +56,7 @@
     
     echo ("</table>");
     echo(" <td><a href='p-input.php'>상품추가하러가기</a></td>");
+    echo(" <td><a href='../members.php'>회원목록보기</a></td>");
 
     //회원목록기능추가할것
 

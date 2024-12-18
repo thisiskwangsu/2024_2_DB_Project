@@ -179,6 +179,7 @@
             </div>
         </div>
     </div>
+    <?php include 'Frame/bottom.php'; ?>
 </body>
 
 </html>
