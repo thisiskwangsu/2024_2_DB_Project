@@ -37,6 +37,7 @@ $Session = $_SESSION['ss_mb_id']; // 세션값 아이디
             if (!$total) {
                 echo '<div class="col-md-12 text-center"><p class="text-danger">쇼핑백에 담긴 상품이 없습니다.</p></div>';
             } else { //쇼핑백에 담긴 물건이 있으면
+                $totalPrice = 0;
                 while ($row = mysqli_fetch_assoc($result)) {
                     $pcode = $row['pcode'];
                     $quantity = $row['quantity'];
@@ -44,14 +45,16 @@ $Session = $_SESSION['ss_mb_id']; // 세션값 아이디
                     $sql = "SELECT * FROM product WHERE code = '$pcode'";
                     $productResult = mysqli_query($conn, $sql);
 
+                    
+                    
                     while ($product = mysqli_fetch_assoc($productResult)) {
                         $userfile = $product['userfile'];
                         $pname = $product['name'];
                         $price = $product['price2'];
-                        $subTotalPrice = $quantity * $price;
-                        $subTotalPrice += $subTotalPrice;
+                        $subTotalPrice = $quantity * $price; //각각의 물건의 총합
+                        $totalPrice = $totalPrice + $subTotalPrice; //총 구매는 각각의 물건의 총합을 더해간다.
 
-                        echo '
+                        echo ('
                         <div class="col-md-4 mb-4">
                             <div class="card">
                                 <img src="Product/photo/' . $userfile . '" class="card-img-top" alt="' . $pname . '">
@@ -60,14 +63,14 @@ $Session = $_SESSION['ss_mb_id']; // 세션값 아이디
                                     <p class="card-text">
                                         가격: ' . number_format($price) . ' 원<br>
                                         수량: ' . $quantity . ' 개<br>
-                                        합계: ' . number_format($subTotalPrice) . ' 원
+                                        합계: ' . number_format($totalPrice) . ' 원
                                     </p>
                                     <a href="product/p-show.php?code=' . $pcode . '" class="btn btn-primary">상품 자세히 보기</a>
                                 </div>
                             </div>
-                        </div>';
+                        </div>');
                     }
-                }
+                }       
             }
             ?>
         </div>
@@ -75,7 +78,7 @@ $Session = $_SESSION['ss_mb_id']; // 세션값 아이디
         <!-- 총 금액 -->
         <div class="row">
             <div class="col-md-12 text-end">
-                <h4>총 구매 금액: <strong><?php echo number_format($subTotalPrice); ?> 원</strong></h4>
+                <h4>총 구매 금액: <strong><?php echo number_format($totalPrice); ?> 원</strong></h4>
             </div>
         </div>
         <?php

@@ -1,8 +1,3 @@
-<!-- 메인 컨텐츠 -->
-<?php
-//hit높은 거 3개 가져오기
-include("DB/dbconn.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +10,19 @@ include("DB/dbconn.php");
 
 <body>
     <div class="container mt-5">
+        <!-- 검색창 섹션 -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <form action="search.php" method="POST">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="상품 검색..." required>
+                        <button class="btn btn-primary" type="submit">검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 인기 상품 섹션 -->
         <div class="row">
             <div class="col-md-12 text-center">
                 <h1>인기 상품</h1>
@@ -22,6 +30,7 @@ include("DB/dbconn.php");
         </div>
         <div class="row mt-4">
             <?php
+            include("DB/dbconn.php");
             $sql = "SELECT * FROM product ORDER BY hit DESC LIMIT 3"; // 최대 3개만 가져옴
             $result = mysqli_query($conn, $sql);
 

@@ -219,6 +219,7 @@ $Session = $_SESSION['ss_mb_id'];
 
     mysqli_close($conn);
     ?>
+    <?php include '../Frame/bottom.php'; ?>
 </body>
 
 </html>
