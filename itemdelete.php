@@ -7,7 +7,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 
-    $sql = "DELETE FROM shoppingbag WHERE session = '$Session' and pcode = '$code' "; //코드는 manc-home 이런식
+    $sql = "DELETE FROM shoppingbag WHERE session = '$Session' and pcode = '$code' "; //�ڵ�� manc-home �̷���
     $result = mysqli_query($conn, $sql);
 
     mysqli_close($conn);

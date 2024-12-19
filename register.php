@@ -169,7 +169,8 @@
             </tr>
         </table>
     </form>
-    <?php } ?>
+
+    <?php } include("Frame/bottom.php");   ?>
 
     <script>
     function fregisterform_submit(f) { //submit 최종 폼체크

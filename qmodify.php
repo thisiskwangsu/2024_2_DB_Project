@@ -1,9 +1,6 @@
 <?php
     include("DB/dbconn.php");
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-
     $Session = $_SESSION['ss_mb_id'];
     $code = $_GET['pcode']; //showbag.php에서 쿼리로 get보냄
     $newnum = $_POST['newnum']; //showbag.php에서 post로 보냄

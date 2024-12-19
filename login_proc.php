@@ -1,8 +1,6 @@
 <?php
     include("DB/dbconn.php");
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
 
     $mb_id = trim($_POST['mb_id']);
     $mb_password = trim($_POST['mb_password']); //앞뒤 공백 제거

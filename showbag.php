@@ -1,8 +1,6 @@
 <?php
     include("DB/dbconn.php");
     include 'Frame/header.php';
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
     
     $logged_in = isset($_SESSION['ss_mb_id']); //로그인 세션있는지
 
@@ -118,6 +116,7 @@
                         <td align=center><font size=2>[<a href=buy.php>구매결정</a>] &nbsp; [<a href=index.php>쇼핑계속</a>]</td>
                     </tr>
                 </table>");
+                include("Frame/bottom.php");
     ?>
 </body>
 
